@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from 'react';
+import './Assets/Style/index.css'
+import Header from './Components/Todos/Header.jsx';
+import TodoList from './Views/TodoList.jsx'
 
 function App() {
+   const [count , setCount] = useState(0)
+  useEffect(() => {
+    setCount(JSON.parse(localStorage.getItem("todos")).length);
+  },[setCount]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header count={count}/>
+      <TodoList />
     </div>
   );
 }
